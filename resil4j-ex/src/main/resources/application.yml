@@ -3,5 +3,12 @@ resilience4j:
     configs:
       default:
         max-attempts: 5   # ???? ??
-        wait-duration:
-          seconds: 1
+        wait-duration: 1000
+
+        retryExceptions:   # ? ??? retry? ??
+          - com.example.resil4jex.exception.RetryException   # RetryException? ??? ??? ??? ??
+        ignoreExceptions:
+          - com.example.resil4jex.exception.IgnoreException    # IgnoreException? ??? ??? ??? x
+    instances:
+      retryConfig:  # config ????? ?? ?
+        base-config: default

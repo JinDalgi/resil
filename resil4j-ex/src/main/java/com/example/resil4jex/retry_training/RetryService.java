@@ -1,5 +1,7 @@
 package com.example.resil4jex.retry_training;
 
+import com.example.resil4jex.exception.IgnoreException;
+import com.example.resil4jex.exception.RetryException;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +28,9 @@ public class RetryService {
 
     private String callAnotherService(String param) {
         // retry exception은 retry 된다.
-        throw new RuntimeException("예외 발생!!!");
+//        throw new RetryException("재시도 해주는 예외 발생!!!");
+        // ignore exception은 retry를 하지 않는다.
+        throw new IgnoreException("재시도 안해주는 예외 발생!!!");
     }
     
 }
