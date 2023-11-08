@@ -2,13 +2,22 @@ resilience4j:
   retry:
     configs:
       default:
-        max-attempts: 5   # ???? ??
-        wait-duration: 1000
+        max-attempts: 5     # try count
+        wait-duration: 1000   # time
 
-        retryExceptions:   # ? ??? retry? ??
-          - com.example.resil4jex.exception.RetryException   # RetryException? ??? ??? ??? ??
+        retryExceptions:
+          - com.example.resil4jex.exception.RetryException
         ignoreExceptions:
-          - com.example.resil4jex.exception.IgnoreException    # IgnoreException? ??? ??? ??? x
+          - com.example.resil4jex.exception.IgnoreException
     instances:
-      retryConfig:  # config ????? ?? ?
+      retryConfig:  # config class name
         base-config: default
+##################### retry config
+
+##################### circuitBreaker
+  circuitbreaker:
+    configs:
+      defalut:
+        sliding-window-type: count_based
+        minimum-number-of-calls: 5
+        sliding-window-size: 10
